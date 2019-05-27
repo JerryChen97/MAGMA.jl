@@ -1,5 +1,5 @@
 # sample code for magma binding
-
+export MagmaAllVec, MagmaIVec, MagmaNoVec
 
 
 # MAGMA enum constants
