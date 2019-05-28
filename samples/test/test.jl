@@ -1,4 +1,15 @@
 #print(1+1)
+#import MAGMA
+using MAGMA: magmaInit, magmaFinalize, gesvd!
+using MAGMA: MagmaAllVec
+
+### some JuliaGPU packages
+using CUDAdrv
+using CUDAapi
+using CUDAnative
+using CuArrays
+
+
 print("Test begins!\n")
 
 jobu = MagmaAllVec
