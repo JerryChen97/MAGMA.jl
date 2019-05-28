@@ -51,7 +51,8 @@ function magmaSgesvd(jobu, jobvt, m, n, A, lda, s, U,
                (Cint, Cint, Cint, Cint, PtrOrCuPtr{Float32},
 			    Cint, PtrOrCuPtr{Float32}, PtrOrCuPtr{Float32},
 				Cint, PtrOrCuPtr{Float32}, Cint, PtrOrCuPtr{Float32},
-				Cint, Ptr{Cint}),
+				Cint, PtrOrCuPtr{Cint}),# test: Ptr->PtrOrCuPtr
+
                 jobu, jobvt, m, n, A, lda, s, U, ldu, VT, ldvt,
 				work, lwork, info)
 end
@@ -165,7 +166,10 @@ for (function_name, element_type, singular_value_type) in
 		   VT = cu(zeros($element_type,ldvt,n))
 
 		   work = cu(zeros($element_type,max(1,lwork)))
-		   info = (zeros(Cint,1))
+
+		   info = cu(zeros(Cint,1))
+
+		   testx = 1 + 1
 
 		   $function_name(jobu, jobvt, m, n, A, lda, s, U, ldu, VT,
 		    ldvt, work, lwork, info)
